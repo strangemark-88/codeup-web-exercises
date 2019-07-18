@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog Walkers</title>
+</head>
+<body>
+<header>
+    <h1>Dog Walkers</h1>
+</header>
+<main>
+    <form method="POST" action="https://request-inspector.glitch.me/">
+
+        <label for="email">Email</label>
+        <br>
+        <input id="email" name="email" type="text">
+        <br>
+
+        <label for="password">Password</label>
+        <br>
+        <input id="password" name="password" type="password">
+        <br>
+        <!----------------------------------------------------------------------------->
+        <label for="dogname">What is your dogs name</label>
+        <br>
+        <input id="dogname" name="dogname" type="text">
+        <br>
+        <!----------------------------------------------------------------------------->
+        <p>Have you used our service before?</p>
+        <label for="yes">
+            <input id="yes"type="radio" name="repeat" value="yes">Yes</label><br>
+        <label for="no">
+            <input id="no" type="radio" name="repeat" value="no">No</label><br>
+        <!----------------------------------------------------------------------------->
+        <p>How did you hear about us?</p>
+        <label for="billboard">
+            <input type="checkbox" id="billboard" name="question_1" value="billboard">Billboard</label>
+        <br>
+        <label for="customer">
+            <input type="checkbox" id="customer" name="question_1" value="customer">Another customer</label>
+        <br>
+        <label for="internet">
+            <input type="checkbox" id="internet" name="question_1" value="internet">Internet Advertisement</label>
+        <br>
+        <label for="other">
+            <input type="checkbox" id="other" name="question_1" value="other">Other
+        </label>
+        <br>
+        <br>
+        <!----------------------------------------------------------------------------->
+        <label for="size">What size is your dog?</label>
+        <br>
+        <select id="size" name="size">
+            <option name="size" value="toy">Toy</option>
+            <option name="size" value="small">Small</option>
+            <option name="size" value="medium" selected>Medium</option>
+            <option name="size" value="large">Large</option>
+            <option name="size" value="xlarge">X-Large</option>
+        </select>
+        <br>
+        <br>
+        <input type="hidden" name="user_id" value="4321">
+        <input type="submit">
+    </form>
+</main>
+</body>
+</html>
