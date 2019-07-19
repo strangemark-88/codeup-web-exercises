@@ -36,7 +36,8 @@ ol {
     list-style: upper-alpha;
     list-style-position: inside;
     text-align: center;
-    /*color: aqua;*/
+    /*align-content: center;*/
+    margin: auto;
 }
 
 ul {
@@ -46,7 +47,6 @@ ul {
 }
 
 li {
-    text-align: center;
     color: aqua;
     /*background-color: darkslategray;*/
 }
@@ -54,7 +54,6 @@ li {
 table, th, td {
     border: 1px solid black;
 }
-
 
 tr:hover {
     background-color: aliceblue;
