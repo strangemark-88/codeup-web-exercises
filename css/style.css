@@ -1,5 +1,99 @@
 
 .fancy-header {
-    color: purple;
+    color: coral;
     text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    color: coral;
+    text-decoration: underline;
+    text-align: center;
+}
+
+header {
+}
+
+#motto {
+    color: coral;
+}
+
+body {
+    background-image: url("../img/cityscape.jpg");
+    /*background-color: darkcyan;*/
+    font-family: 'Cabin', sans-serif;
+    /*background-blend-mode: color;*/
+}
+
+/*main {*/
+/*    background-image: url("../img/skyscraper.png");*/
+/*}*/
+
+ol {
+    list-style: upper-alpha;
+    list-style-position: inside;
+    text-align: center;
+    /*color: aqua;*/
+}
+
+ul {
+    list-style: circle;
+    list-style-position: inside;
+    text-align: center;
+}
+
+li {
+    text-align: center;
+    color: aqua;
+    /*background-color: darkslategray;*/
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+
+tr:hover {
+    background-color: aliceblue;
+}
+
+tr {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#thead {
+    background-color: aliceblue;
+    font-size: x-large;
+    text-decoration: underline;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    vertical-align: middle;
+    padding: 15px;
+    background-color: cornflowerblue;
+}
+
+a:link {
+    color:red;
+}
+
+a:visited {
+    color:black;
+}
+
+a:hover {
+    color:blue;
+}
+
+a:active {
+    color:green;
 }
