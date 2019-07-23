@@ -1,0 +1,59 @@
+body {
+    background-color: #848487;
+}
+.flag {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+.star {
+    position: relative;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .9em;
+    margin-right: .9em;
+    margin-bottom: 1.2em;
+    border-right: .3em solid transparent;
+    border-bottom: .7em  solid white;
+    border-left: .3em solid transparent;
+    /* Controlls the size of the stars. */
+    font-size: 90px;
+    top: 200px;
+}
+.star:before, .star:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: .6em;
+    left: -1em;
+    border-right: 1em solid transparent;
+    border-bottom: .7em  solid white;
+    border-left: 1em solid transparent;
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+}
+.star:after {
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+}
+
+.blue-box {
+    background-color: blue;
+    height: 100%;
+    width: 30%;
+    float: left;
+}
+.red-box {
+    background-color: red;
+    height: 50%;
+    width: 70%;
+}
+.white-box {
+    background-color: white;
+    height: 50%;
+    width: 70%;
+    float: right;
+}
