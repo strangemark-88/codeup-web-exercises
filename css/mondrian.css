@@ -21,7 +21,10 @@ main {
     grid-template-rows: repeat(8, 1fr);
     grid-column-gap: .5em;
     grid-row-gap: .5em;
-    border: .5em solid black;
+    border: .5em solid white;
+    padding: .5em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
 }
 
 .one {
