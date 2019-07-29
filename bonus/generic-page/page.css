@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: grid;
+    grid-template-areas:
+            "header header"
+            "nav main"
+            "nav main";
+    grid-template-rows: 2em 1fr;
+    grid-template-columns: 15% 1fr;
+    /*grid-gap: 10px;*/
+    height: 100vh;
+    width: 100%;
+    font-family: Roboto, sans-serif;
+}
+header {
+    grid-area: header;
+    background: black;
+}
+header ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+header a:hover {
+    background: white;
+    color: black;
+}
+header a {
+    color: white;
+}
+nav {
+    grid-area: nav;
+    background: lightgrey;
+
+}
+nav ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: center;
+}
+nav a {
+    width: 100%;
+    color: black;
+}
+nav a:hover {
+    background: black;
+    color: white;
+}
+.menu {
+    font-weight: bolder;
+    font-size: larger;
+    margin: 0 .5em .5em 0;
+}
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-areas:
+            "art1 ad1"
+            "art2 ad2"
+            "art3 ad3"
+            "section section"
+            "footer footer";
+    grid-template-rows: repeat(3, 1fr) 10% 15%;
+    grid-template-columns: 70% 1fr;
+    overflow: auto;
+    grid-row-gap: 1em;
+}
+.art1 {
+    grid-area: art1;
+}
+.art2 {
+    grid-area: art2;
+}
+.art3 {
+    grid-area: art3;
+}
+.ad1 {
+    grid-area: ad1;
+}
+.ad2 {
+    grid-area: ad2;
+}
+.ad3 {
+    grid-area: ad3;
+}
+.firstad {
+    height: 80px;
+    width: 100%;
+    border: 1px solid gray;
+    margin: 2em .5em .5em .5em;
+}
+.secondad {
+    height: 175px;
+    width: 100%;
+    border: 1px solid gray;
+    margin: 1em .5em 2em .5em;
+}
+section {
+    grid-area: section;
+}
+section ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+section a {
+    color: black;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+section a:hover{
+    color: white;
+    background: black;
+}
+footer {
+    grid-area: footer;
+    /*background: #535353;*/
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+footer div {
+
+}
+.foot1 {
+    font-size: larger;
+    background: #535353;
+    flex-grow: 3;
+    padding: 2em 2em 2em 1em;
+}
+.foot2 {
+    font-size: small;
+    background: #252525;
+    flex-grow: 1;
+    padding: 1em;
+}
+a {
+    display: inline-block;
+    text-decoration: none;
+    padding: .5em;
+}
+h2 {
+    color: #358275;
+    margin: 1em 0 1em .5em;
+}
+p {
+    margin: .5em 0 1em .5em;
+}
