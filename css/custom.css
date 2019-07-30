@@ -1,0 +1,11 @@
+.jumbotron {
+    background-image: url(https://java.codeup.com/examples/bootstrap/pizza.png);
+    background-size: 100% 100%;
+}
+h1 {
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+/*.form-check {*/
+/*    padding-left: 0;*/
+/*}*/
