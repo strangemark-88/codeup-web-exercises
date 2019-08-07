@@ -10,7 +10,7 @@
  */
 
 function sayHello(name) {
-    return "Hello " + name;
+    return "Hello, " + name + "!";
 }
 
 /**
@@ -86,7 +86,7 @@ console.log(isTwo(random));
 
 function calculateTip(bill, tip) {
     bill = +prompt('What was your bill total?');
-    tip = +prompt('What percentage would you like to tip?');
+    tip = +prompt('What percentage would you like to tip% ?');
     return alert('Your tip is ' + (bill * tip));
 }
 calculateTip();
