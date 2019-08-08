@@ -6,6 +6,10 @@
 </head>
 <body>
 <script>
+    (function() {
+
+    })();
+    "use strict";
     function isOdd(number){
         return number % 2 !== 0;
     }
@@ -54,23 +58,35 @@
     }
 
     function isTruthy(input) {
-        return input == true;
+        return !!input;
     }
     
     function isFalsy(input) {
-        return input == false;
+        return !input;
     }
 
     function isVowel(letter) {
-        return 'aeiou'.indexOf( letter[0].toLowerCase() ) !== -1;
+        return 'aeiou'.indexOf( letter.toLowerCase() ) !== -1;
     }
     
     function isConsonant(letter) {
-        return 'aeiou'.indexOf( letter[0].toLowerCase() ) == -1;
+        return 'aeiou'.indexOf( letter.toLowerCase() ) == -1;
+    }
+    
+    function isCapital(letter) {
+        return letter === letter.toUpperCase();
+    }
+    function isLowerCase(letter) {
+        return letter === letter.toLowerCase();
+    }
+    
+    function hasLowerCase(string) {
+        return string !== string.toUpperCase();
     }
 
-
     
+
+
 
 </script>
 
