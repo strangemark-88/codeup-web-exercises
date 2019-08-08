@@ -37,11 +37,11 @@
 //         }
 //     }
 //     function posNeg(num) {
-//         if(num > 0) {
-//             alert("Your number is positive!");
-//         } else {
-//             alert("Your number is negative!");
-//         }
+//           if(Math.sign(num) === 1){
+//              return alert('thats positive')
+//          } else{
+//              return alert('thats negative')
+//          }
 //     }
 // }
 // askUser();
@@ -61,8 +61,6 @@ function askUserForNumber(userInput) {
                 addHundred(num);
                 posOrNeg(num);
             }
-
-
     } else {
         alert("ok then")
     }
