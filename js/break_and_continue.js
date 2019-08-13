@@ -25,12 +25,4 @@ for (var x = 1; x < 50; x+=2) {
     }
 }
 
-
-
-// var userInput = +prompt('Enter an odd number between 1-50');
-//
-// userInput.isInteger(parseInt(userInput)) === false)
-//
-// while(userInput % 2 === 0) {
-//     userInput = +prompt('Enter an ODD number between 1-50');
-// }
+//////////////////////////////////////////////////////////////////////////////////////////////

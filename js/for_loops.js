@@ -12,7 +12,7 @@
 
     //
     // for (var x=1; x<=10; x++) {
-    // var num = Math.floor(Math.random() * 200) + 20;
+    // var num = Math.floor(Math.random() * 181) + 20;
     //     if(num % 2 === 0){
     //         console.log(num + ' is even');
     //     } else {
@@ -33,11 +33,25 @@
 //         console.log(num);
 // }
 
+// var x = 1;
+//
+// for (var i = 1; i <=9; i++){
+//     console.log(j * x);
+//     x += '1';
+// }
+
+// for (var i = 1; i <=9; i++){
+//     console.log(String(i).repeat(i));
+// }
+
 
 /////////////////////////////////////////////////////////////////////////
 
 for (var i = 100; i > 0; ){
     console.log(i);
-    // var
-    (i = i -5);
+    (i = i - 5);
 }
+
+// for (var i = 100; i >= 0; i-=5){
+//     console.log(i);
+// }
