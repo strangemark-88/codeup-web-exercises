@@ -67,13 +67,13 @@
      */
 
     function first(array) {
-        return (array[0]);
+        return array[0];
     }
     function second(array) {
-        return (array[1]);
+        return array[1];
     }
     function last(array) {
-        return (array[array.length -1]);
+        return array[array.length -1 ];
     }
 
     // console.log(last(names));
