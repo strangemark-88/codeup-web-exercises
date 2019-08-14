@@ -205,10 +205,17 @@
     //
     // console.log(book);
     //
-    // function showBookInfo(bookObj) {
-    //     return bookObj.title + ' ' + bookObj.author.firstName + ' ' + bookObj.author.lastName;
-    // }
+    function showBookInfo(bookObj) {
+        return bookObj.title + ' ' + bookObj.author.firstName + ' ' + bookObj.author.lastName;
+    }
+
+    // // console.log(showBookInfo(createBook('title', 'first', 'last')));
     //
-    // console.log(showBookInfo(createBook('title', 'first', 'last')));
+    //
+    //
+    // books.forEach(function (element, i) {
+    //        console.log('Book # ' + (i + 1));
+    //         console.log(showBookInfo(element));
+    //     });
 
 })();
