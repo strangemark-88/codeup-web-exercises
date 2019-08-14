@@ -169,9 +169,8 @@
 
     /**
      * Bonus:
-     * - Create a function named `createBook` that accepts a title and author
-     *   name and returns a book object with the properties described
-     *   previously.
+     * - Create a function named `createBook` that accepts a title and author name
+     * and returns a book object with the properties described previously.
      *
      *   Refactor your code that creates the books array to instead
      *   use your function.
@@ -184,6 +183,32 @@
      *   `showBookInfo` function.
      */
 
+    function createBook(title, first, last) {
+        return {
+            title: title,
+            author: {
+                firstName: first,
+                lastName: last,
+            }
+        }
+    }
+    //
+    // books.push(createBook('title5', 'first5', 'last5'));
+    // console.log(books);
 
+    // var book = [createBook()];
+    //
+    // console.log(book);
+    //
+    // book.push(createBook('title5', 'first5', 'last5'));
+    // book.push(createBook('title6', 'first6', 'last6'));
+    //
+    // console.log(book);
+    //
+    // function showBookInfo(bookObj) {
+    //     return bookObj.title + ' ' + bookObj.author.firstName + ' ' + bookObj.author.lastName;
+    // }
+    //
+    // console.log(showBookInfo(createBook('title', 'first', 'last')));
 
 })();
