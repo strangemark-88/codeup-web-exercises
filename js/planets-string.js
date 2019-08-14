@@ -11,7 +11,7 @@
      * console.log planetsArray to check your work
      */
 
-    var planetsArray = [planetsString];
+    planetsArray = [planetsString];
 
     console.log(planetsArray);
 
@@ -30,7 +30,11 @@
 
     console.log(planetsSplit);
 
-    var planetsBreak = "Mercury <br> Venus <br> Earth <br> Mars <br> Jupiter <br> Saturn <br> Uranus <br> Neptune"
+    // var planetsBreak = "Mercury <br> Venus <br> Earth <br> Mars <br> Jupiter <br> Saturn <br> Uranus <br> Neptune"
+    // console.log(planetsBreak);
+
+    var planetsBreak = planetsSplit.join('<br>');
+
     console.log(planetsBreak);
 
     ////////////////////////////// Bonus //////////////////////////////////
@@ -46,4 +50,12 @@
      var planetsList = planetsSplit.join('');
 
     document.body.innerHTML = planetsList;
+
+
+//    Other Solution //
+
+//     planetsSplit = '<ul><li>' +  planetsSplit.join('</li><li>') + '</li></ul>';
+//
+//     document.write(planetsSplit)
+
 })();
