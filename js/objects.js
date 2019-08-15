@@ -183,16 +183,16 @@
      *   `showBookInfo` function.
      */
 
-    function createBook(title, first, last) {
-        return {
-            title: title,
-            author: {
-                firstName: first,
-                lastName: last,
-            }
-        }
-    }
-    //
+    // function createBook(title, first, last) {
+    //     return {
+    //         title: title,
+    //         author: {
+    //             firstName: first,
+    //             lastName: last,
+    //         }
+    //     }
+    // }
+
     // books.push(createBook('title5', 'first5', 'last5'));
     // console.log(books);
 
@@ -205,11 +205,11 @@
     //
     // console.log(book);
     //
-    function showBookInfo(bookObj) {
-        return bookObj.title + ' ' + bookObj.author.firstName + ' ' + bookObj.author.lastName;
-    }
-
-    // // console.log(showBookInfo(createBook('title', 'first', 'last')));
+    // function showBookInfo(bookObj) {
+    //     return bookObj.title + ' ' + bookObj.author.firstName + ' ' + bookObj.author.lastName;
+    // }
+    //
+    // console.log(showBookInfo(createBook('title', 'first', 'last')));
     //
     //
     //
@@ -217,5 +217,10 @@
     //        console.log('Book # ' + (i + 1));
     //         console.log(showBookInfo(element));
     //     });
+
+
+
+
+
 
 })();
