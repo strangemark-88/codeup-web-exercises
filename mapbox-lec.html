@@ -20,8 +20,21 @@
             center: [-98.4916, 29.4252]
             });
 
-        map.jumpTo({center: [-90, 29]});
 
+        var marker = new mapboxgl.Marker();
+            marker.setLngLat([-98.4916, 29.4260]);
+            marker.addTo(map);
+
+        var alamoPopup = new mapboxgl.Popup()
+            .setHTML("<p>Remember The Alamo!</p>")
+            .addTo(marker);
+
+        marker.setPopup(alamoPopup)
+
+        // var popup = new mapboxgl.Popup()
+        //     .setLngLat([-98.489615, 29.426827])
+        //     .setHTML("<p>Codeup Rocks!</p>")
+        //     .addTo(map);
     </script>
 </body>
 </html>
