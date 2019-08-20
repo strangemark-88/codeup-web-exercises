@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mapbox maps api</title>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+<script src="js/mapbox-utils.js"></script>
+<script src="js/keys.js"></script>
+<div id='map' style='width: 100%; height: 80vh;'></div>
+<script>
+
+    mapboxgl.accessToken = mapboxToken;
+
+/////////////////////////////// First Part ////////////////////////////////////////////////////
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [-98.273111, 29.801281],
+        zoom: 8
+     });
+
+
+    // geocode("Driftwood, TX", mapboxToken).then(function (result) {
+    //    map.setZoom(12);
+    //    map.setCenter(result);
+    // });
+
+    // var favPopup1 = new mapboxgl.Popup()
+    //     .setHTML("<h3>Trattoria Lisina</h3>");
+    //
+    // var favmarker1 = new mapboxgl.Marker()
+    //     .setLngLat([-98.0130225, 30.102461])
+    //     .setPopup(favPopup1)
+    //     .addTo(map);
+    //
+    // var favPopup2 = new mapboxgl.Popup()
+    //     .setHTML("<h3>McAdoos</h3>");
+    //
+    // var favmarker2 = new mapboxgl.Marker()
+    //     .setLngLat([-98.1271237, 29.7028332])
+    //     .setPopup(favPopup2)
+    //     .addTo(map);
+    //
+    //
+    // var favPopup3 = new mapboxgl.Popup()
+    //     .setHTML("<h3>Seoul Asian Food Market & Cafe</h3>");
+    //
+    // var favmarker3 = new mapboxgl.Marker()
+    //     .setLngLat([-98.4297784, 29.4855695])
+    //     .setPopup(favPopup3)
+    //     .addTo(map);
+
+////////////////////////////////////////// Rebuilt as array ///////////////////////////////////////////////////////
+
+
+    var favRestraunts = [
+
+        {
+            name: 'Trattoria Lisina',
+            location: [-98.0130225, 30.102461],
+            why: 'Its my favorite because its what i could think of'
+        },
+        {
+            name: 'McAdoos',
+            location: [-98.1271237, 29.7028332],
+            why: 'Its my favorite because its what i could think of'
+        },
+        {
+            name: 'Seoul Asian Food Market & Cafe',
+            location: [-98.4297784, 29.4855695],
+            why: 'Its my favorite because its what i could think of'
+        }
+    ];
+
+    function setMarkerPopup(array) {
+        var favPopup = new mapboxgl.Popup()
+            .setHTML(array.name + '<br>' + array.why);
+
+        var favmarker = new mapboxgl.Marker()
+            .setLngLat(array.location)
+            .setPopup(favPopup)
+            .addTo(map);
+    }
+
+    favRestraunts.forEach(setMarkerPopup);
+
+</script>
+<h4>Zoom Level</h4>
+<select name="zoom_level">
+    <option value="5">5</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+</select>
+
+</body>
+</html>
