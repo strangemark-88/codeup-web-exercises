@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+<!--    1-->
+    function charSame(str) {
+        if(str === str.toLowerCase() || str === str.toUpperCase()){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+//    2 array each number sum of itself and all previous numbers
+
+
+    function arrSum(arr) {
+        var sum = [];
+        arr.forEach(function (num, i) {
+            sum += (num + i);
+        });
+        return sum;
+    }
+
+
+
+//    3  isogram
+
+    function isIsogram(str){
+        return str.split('').filter((item, pos, arr) => arr.indexOf(item) == pos).length == str.length;
+}
+
+//    4
+
+    function phoneNum(num) {
+            phone2 = ABC;
+            phone3 = DEF;
+            phone4 = GHI;
+            phone5 = JKL;
+            phone6 = MNO;
+            phone7 = PQRS;
+            phone8 = TUV;
+            phone9 - WXYZ;
+    }
+
+//    5
+
+
+</script>
+</body>
+</html>

@@ -1,31 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset='utf-8' />
-    <title>Display map navigation controls</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+    }
+
+    h3, p {
+        display: inline-block;
+    }</style>
+
 </head>
-<body>
+<body class="container">
+<h1>Coffee!</h1>
+<div class="divider"></div>
+<div class="row section">
+    <div class="col l8" id="coffees"></div>
+    <div class="col l4">
+        <h4>Filter</h4>
+        <div class="row">
+            <label for="roast-selection">Roast</label>
+            <select class="select" id="roast-selection">
+                <option>all</option>
+                <option>light</option>
+                <option>medium</option>
+                <option>dark</option>
+            </select>
+            <div class="input-field">
+                <input class="validate" id="coffee-selection" type="text">
+                <label for="coffee-selection">Coffee</label>
+            </div>
+        </div>
+        <div class="row section">
+            <h4>Add a new Coffee</h4>
+            <label for="new-roast-selection">Roast</label>
+            <select id="new-roast-selection">
+                <option>light</option>
+                <option>medium</option>
+                <option>dark</option>
+            </select>
+            <div class="input-field">
+                <label for="new-coffee-selection">Coffee</label>
+                <input id="new-coffee-selection" type="text">
+            </div>
+            <button class="btn" id="submit">Submit</button>
+        </div>
+    </div>
 
-<div id='map'></div>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3RyYW5nZW1hcms4OCIsImEiOiJjanppaGJ4ZzEwMmowM25ydWE4emJ2bGV2In0.y1A0Gl0DY_sN4PBXXLOWzQ';
-    var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-74.50, 40], // starting position
-        zoom: 9 // starting zoom
-    });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>"use strict";
 
-    // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl());
-</script>
+    function renderCoffee(coffee) {
+        var html = '<div class="col l6">';
+        html += '<h3>' + coffee.name + '</h3>';
+        html += ' <p>' + coffee.roast + '</p>';
+        html += '</div>';
 
+        return html;
+    }
+
+    function renderCoffees(coffees) {
+        var html = '';
+        for (var i = 0; i < coffees.length; i++) {
+            html += renderCoffee(coffees[i]);
+        }
+        return html;
+    }
+
+    function updateCoffees() {
+        var selectedRoast = roastSelection.value;
+        var selectedCoffee = coffeeSelection.value;
+        var filteredCoffees = [];
+        coffees.forEach(function (coffee) {
+            if (selectedRoast === "all" && (coffee.name.toLowerCase().indexOf(selectedCoffee) !== -1)) {
+                filteredCoffees.push(coffee);
+            } else {
+                if (coffee.roast === selectedRoast && (coffee.name.toLowerCase().indexOf(selectedCoffee) !== -1)) {
+                    filteredCoffees.push(coffee);
+                }
+            }
+        });
+        body.innerHTML = renderCoffees(filteredCoffees);
+    }
+
+    function addToCoffees() {
+
+        if (!newCoffeeSelection.value) {
+            return;
+        }
+        var coffee = {
+            id: (coffees.length + 1),
+            name: newCoffeeSelection.value,
+            roast: newCoffeeRoast.value
+        };
+
+        coffees.push(coffee);
+        updateCoffees();
+    }
+
+    // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
+    var coffees = [
+        {id: 1, name: 'Light City', roast: 'light'},
+        {id: 2, name: 'Half City', roast: 'light'},
+        {id: 3, name: 'Cinnamon', roast: 'light'},
+        {id: 4, name: 'City', roast: 'medium'},
+        {id: 5, name: 'American', roast: 'medium'},
+        {id: 6, name: 'Breakfast', roast: 'medium'},
+        {id: 7, name: 'High', roast: 'dark'},
+        {id: 8, name: 'Continental', roast: 'dark'},
+        {id: 9, name: 'New Orleans', roast: 'dark'},
+        {id: 10, name: 'European', roast: 'dark'},
+        {id: 11, name: 'Espresso', roast: 'dark'},
+        {id: 12, name: 'Viennese', roast: 'dark'},
+        {id: 13, name: 'Italian', roast: 'dark'},
+        {id: 14, name: 'French', roast: 'dark'},
+    ];
+
+    var body = document.querySelector('#coffees');
+    var submitButton = document.querySelector('#submit');
+    var roastSelection = document.querySelector('#roast-selection');
+    var coffeeSelection = document.querySelector('#coffee-selection');
+    var newCoffeeSelection = document.querySelector('#new-coffee-selection');
+    var newCoffeeRoast = document.querySelector('#new-roast-selection');
+
+    body.innerHTML = renderCoffees(coffees);
+
+    roastSelection.addEventListener('change', updateCoffees);
+    coffeeSelection.addEventListener('input', updateCoffees);
+    submitButton.addEventListener('click', addToCoffees);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });</script>
+</div>
 </body>
 </html>
