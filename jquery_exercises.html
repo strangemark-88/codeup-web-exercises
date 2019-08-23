@@ -7,12 +7,31 @@
 <body>
 
 
-    <script src="js/jquery-2.2.4.js"></script>
-    <script>
+    <h1 id="header" class="first-H1">This is H1</h1>
 
-        $(document).ready(function() {
-         alert( 'The DOM has finished loading!' );
-        });
+    <div id="wrapper" class="div-wrap">
+
+    <p id="lorem" class="ipsum, codeup">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+    <h1 id="header-02" class="second-H1">This is the second H1</h1>
+
+    <ul id="list-01">
+        <li class="codeup">1</li>
+        <li class="codeup">2</li>
+        <li class="">3</li>
+    </ul>
+
+    </div>
+
+
+<script src="js/jquery-2.2.4.js"></script>
+    <script>
+      $('li').css('font-size', '20px');
+
+     $('h1, p, li').css('background-color', 'green');
+
+     var h1Contents= $('h1').html();
+     alert(h1Contents);
 
     </script>
 </body>
