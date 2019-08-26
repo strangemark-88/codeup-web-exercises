@@ -2,20 +2,151 @@
 <html>
 <head>
     <title>Konami Code</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .blinking{
+            animation:blinkingText 1s infinite;
+        }
+        @keyframes blinkingText{
+            0%{     color: #AEAFB2;    }
+            49%{    color: transparent; }
+            50%{    color: transparent; }
+            99%{    color: transparent;  }
+            100%{   color: #AEAFB2;    }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+        }
+
+        body {
+            -webkit-transform: perspective(500px);
+            -webkit-transform-style: preserve-3d;
+        }
+
+        .coin {
+            background-image: url(img/coin-icon.svg);
+            background-size: 100% 100%;
+            border-radius: 100%;
+            height: 48px;
+            margin: 50px auto;
+            position: relative;
+            width: 48px;
+            -webkit-transition: 2s linear;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        h3 {
+            font-size: 36px;
+        }
+
+        .coin-wrap {
+            display: inline-flex;
+            align-items: center;
+        }
+        .randomizer {
+        color: #AEAFB2;
+        font-size: 24px;
+        }
+        .snake {
+        color: #AEAFB2;
+        font-size: 18px;
+        }
+
+    </style>
 </head>
 <body>
-<h1>Konami Code</h1>
+    <h1>Konami Code</h1>
 
-<script src="/js/jquery.js"></script>
+    <div class="coin-wrap">
+        <h3>Insert Coin</h3>
+        <div class="coin" id="coin"></div>
+    </div>
+
+<div class="fission"></div>
+    <br>
+    <div class="randomizer"></div>
+    <br>
+    <div class="snake"></div>
+    <div class="snake"></div>
+    <div class="snake"></div>
+    <div class="snake"></div>
+    <div class="snake"></div>
+    <div class="snake"></div>
+    <div class="snake"></div>
+
+
+<script src="js/jquery-2.2.4.js"></script>
+    <script src="js/randomize_text.js"></script>
+
 <script>
     "use strict";
 
-    $(document).keyup(function(event){
-        console.log(event.keyCode);
+
+    var keyInput = [];
+
+    var codeCount = 0;
+
+    $(document).keyup(function(event) {
+
+        var konamiCode = "38,38,40,40,37,39,37,39,66,65,13";
+
+        console.log(event.which);
+        console.log(event.key);
+
+        keyInput.push(event.which );
+
+        if ( keyInput.toString().indexOf(konamiCode) >= 0 && codeCount === 0) {
+            keyInput = [];
+            codeCount++;
+            alert('You have added 30 lives!');
+        }
+        else if ( keyInput.toString().indexOf(konamiCode) >= 0 && codeCount === 1) {
+            keyInput = [];
+            codeCount++;
+            $('.fission').html('FISSION MAILED').css('font-size', '48px').addClass('blinking');
+            $('body').css('background-color', '#1D2524');
+            $('h1, h3').css('color', '#AEAFB2');
+            $('.randomizer').randomizeText({text: "Emit Continent"});
+            $('.snake').randomizeText({text: "SNAAAAAAAAAAAAAAKE"});
+            alert('What do you think you\'re doing!?');
+        }
+        else if ( keyInput.toString().indexOf(konamiCode) >= 0 && codeCount === 2) {
+            keyInput = [];
+            codeCount++;
+            $('body').css('background-image', 'url(https://i.kinja-img.com/gawker-media/image/upload/s--1MgaMZ1X--/c_scale,fl_progressive,q_80,w_800/18t862m8878gkjpg.jpg');
+            alert('STOP FOOLIN\' AROUND KID!');
+        }
+        else if ( keyInput.toString().indexOf(konamiCode) >= 0 && codeCount >= 3) {
+            keyInput = [];
+            codeCount++;
+            $('div, h1, h3').hide();
+            $('body').css('background-image', 'url(https://www.auslogics.com/en/articles/wp-content/uploads/2018/03/fix-bsod-win7.jpg').css('background-size', 'cover');
+            $('html').css('cursor', 'not-allowed');
+            alert('STOP FOOLIN\' AROUND KID!');
+        }
 
 
 
     });
+
+    var Coin = document.getElementById("coin");
+    var degrees = 0;
+    Coin.onclick = function() {
+        degrees += 1800;
+        console.log(degrees);
+        Coin.style.webkitTransform = "rotateY(" + degrees + "deg)";
+        Coin.style.MozTransform = "rotateY(" + degrees + "deg)";
+        Coin.style.msTransform = "rotateY(" + degrees + "deg)";
+        Coin.style.OTransform = "rotateY(" + degrees + "deg)";
+        Coin.style.transform = "rotateY(" + degrees + "deg)";
+    }
 
 
 </script>
