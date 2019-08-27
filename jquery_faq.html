@@ -13,6 +13,13 @@
             background: #ef0;
         }
 
+        .bolded {
+            font-weight: bold;
+        }
+
+        .toggle-Blue {
+            color: blue;
+        }
 
     </style>
 </head>
@@ -63,6 +70,40 @@
     </dl>
     <input class="vis-toggle" type="button" value="See Answers">
 
+<!------------------------------------------    Part-2           -------------------------------------->
+
+        <h3>Park-1</h3>
+    <ul>
+
+            <li>Fact-1</li>
+            <li>Fact-2</li>
+            <li>Fact-3</li>
+            <li>Fact-4</li>
+
+    </ul>
+
+        <h3>Park-2</h3>
+    <ul>
+
+            <li>Fact-1</li>
+            <li>Fact-2</li>
+            <li>Fact-3</li>
+            <li>Fact-4</li>
+
+    </ul>
+
+        <h3>Park-3</h3>
+    <ul>
+
+            <li>Fact-1</li>
+            <li>Fact-2</li>
+            <li>Fact-3</li>
+            <li>Fact-4</li>
+
+    </ul>
+
+    <input class="highlight-Last" type="button" value="Highlight last item">
+
     <script src="js/jquery-2.2.4.js"></script>
 
     <script>
@@ -75,8 +116,22 @@
             $(this).toggleClass('highlight')
         });
 
+////////////////////// Part-2    //////////////////////////////
 
 
+        $('.highlight-Last').click(function() {
+            $('ul').each(function() {
+                $(this).children().last().toggleClass('highlight')
+            });
+        });
+
+        $('h3').click(function() {
+            $(this).next().children().toggleClass('bolded');
+        });
+
+        $('li').click(function() {
+            $(this).parent().children().first().toggleClass('toggle-Blue');
+        });
 
 
 
