@@ -21,10 +21,22 @@
             color: blue;
         }
 
+        /*ul {*/
+        /*    display: none;*/
+        /*}*/
+
     </style>
 </head>
 <body>
 
+<div>
+    <h1>Would you like to sign up for our newsletter?</h1>
+    <span>x</span>
+</div>
+
+    <h2>Register for the site</h2>
+
+<!------------------------------------------------------------------------------------------------->
     <dl>
         <dt>Who is the director of the National Park Service?</dt>
 
@@ -107,7 +119,11 @@
     <script src="js/jquery-2.2.4.js"></script>
 
     <script>
-        
+
+        $(document).ready(function() {
+
+
+
         $('.vis-toggle').click(function() {
             $('dd').toggleClass('invisible');
         });
@@ -116,7 +132,7 @@
             $(this).toggleClass('highlight')
         });
 
-////////////////////// Part-2    //////////////////////////////
+////////////////////// Part-2  //////////////////////////////
 
 
         $('.highlight-Last').click(function() {
@@ -133,8 +149,26 @@
             $(this).parent().children().first().toggleClass('toggle-Blue');
         });
 
+////////////////////////  Part-3  /////////////////////////////////
+
+        $('span').click(function() {
+            $('div').hide();
+        });
 
 
+        $('ul').hide();
+
+
+        $('h3').click(function() {
+                $(this).next().slideToggle();
+        });
+
+        $('h2').hide();
+
+        $('h2').delay(8000).fadeIn();
+
+
+        });
     </script>
 
 </body>
