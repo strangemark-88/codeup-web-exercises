@@ -26,10 +26,41 @@
     "use strict";
     // TODO: Create an ajax GET request for /data/inventory.json
 
+    // $.ajax('data/inventory.json');
+
+    // $.get("data/inventory.json", {
+    //
+    // }).done(function(data) {
+    //
+    // });
+
     // TODO: Take the data from inventory.json and append it to the products table
     //       HINT: Your data should come back as a JSON object; use console.log() to inspect
     //             its contents and fields
     //       HINT: You will want to target #insertProducts for your new HTML elements
+
+
+    $.get("data/inventory.json", {
+
+    }).done(function(data) {
+
+        var storeInv = '';
+
+        data.forEach(function (table) {
+            console.log(table);
+
+                storeInv += '<tr>';
+                storeInv += '<th>' + table.title +'</th>';
+                storeInv += '<th>' + table.quantity + '</th>';
+                storeInv += '<th>' + table.price + '</th>';
+                storeInv += '<th>' + table.categories + '</th>';
+                storeInv += '</tr>'
+
+        });
+
+        $('#insertProducts').html(storeInv);
+    });
+
 })();
 </script>
 
