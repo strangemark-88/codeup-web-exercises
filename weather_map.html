@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather-Map</title>
+
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+<body>
+    <div class="container">
+        <h1>Title</h1>
+        <h3 class="location">Mapbox Location Name</h3>
+
+        <section class="wrapper">
+
+<!--        <div class="card-wrapper">-->
+<!--            <div class="hi-low">High/Low</div>-->
+<!--            <div class="icon">weather Icon</div>-->
+<!--            <div class="cloud-rain">cloud/rain</div>-->
+<!--            <div class="humid">humid</div>-->
+<!--            <div class="wind">wind</div>-->
+<!--        </div>-->
+
+        </section>
+
+        <div id='map' style='width: 80%; height: 80vh;'></div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <script src="js/mapbox-utils.js"></script>
+    <script src="js/keys.js"></script>
+
+    <script>
+        // $(document).ready(function() {
+
+//////////////////////////////////     Weather         ///////////////////////////////////////////////////////////////
+
+
+        var weatherObject = {};
+            // latitude = data.latitude;
+            // longitude = data.longitude;
+            //
+            // currentTemp = data.currently.temperature;
+            //
+            // highLow = data.daily.data[0].temperatureHigh + '/' + data.daily.data[0].temperatureLow;
+
+
+        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/"+ darkSkyKey +"/29.4241,-98.4936").done(function(data) {
+            console.log(data);
+            weatherObject = data;
+
+
+        function weatherCard(input) {
+            var cardHTML = '';
+
+            for (var i = 0; i < 2; i++){
+
+                cardHTML +=  '<div>';
+                cardHTML +=  '<div>' + weatherObject.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[0].temperatureLow + '</div>';
+                cardHTML +=  '<div>' + weatherObject.daily.data[i].icon + '</div>';
+                cardHTML +=  '<div>' + weatherObject.daily.data[i].summary + '</div>';
+                cardHTML +=  '<div>' + 'Humidity: ' + weatherObject.daily.data[i].humidity+ '</div>';
+                cardHTML +=  '<div>' + 'Wind Speed: ' + weatherObject.daily.data[i].windSpeed + '</div>';
+                cardHTML +=  '</div>';
+            }
+
+            // return cardHTML;
+            $('.wrapper').html(weatherCard(weatherObject));
+
+        }
+        });
+
+
+        // <div class="card-wrapper">
+
+        //      <div class="hi-low">High/Low</div>
+
+        //      <div class="icon">weather Icon</div>
+
+        //      <div class="cloud-rain">cloud/rain</div>
+
+        //      <div class="humid">humid</div>
+
+        //      <div class="wind">wind</div>
+
+        //     </div>
+
+
+
+
+//////////////////////////////////     Map         ///////////////////////////////////////////////////////////////
+
+        mapboxgl.accessToken = mapboxToken;
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            center: [-98.273111, 29.801281],
+            zoom: 8
+        });
+
+
+        // function reverseGeocode(coordinates, token) {
+        //     var baseUrl = 'https://api.mapbox.com';
+        //     var endPoint = '/geocoding/v5/mapbox.places/';
+        //     return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
+        //         .then(function(res) {
+        //             return res.json();
+        //         })
+        //         // to get all the data from the request, comment out the following three lines...
+        //         .then(function(data) {
+        //             return data.features[0].place_name;
+        //         });
+        // }
+        //
+        // // reverseGeocode({lat: latitude, lng: longitude}, mapboxToken);
+        // // });
+
+    </script>
+
+</body>
+</html>
