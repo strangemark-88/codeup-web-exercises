@@ -24,10 +24,19 @@
 
         </section>
 
+        <section class="map-wrap">
+            <div>
+                <label for="latitude-input">Latitude</label>
+                <input name="latitude" id="latitude-input" type="text">
+
+                <label for="longitude-input">Longitude</label>
+                <input id="longitude-input" type="text">
+                <button type="button">Search</button>
+            </div>
+
         <div id='map' style='width: 80%; height: 80vh;'></div>
 
-
-
+        </section>
 
 
 
@@ -75,8 +84,6 @@
 
         }
             $('.wrapper').html(weatherCard(weatherObject));
-
-
 
 
 
@@ -137,7 +144,7 @@
             }
         ];
 
-/////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////      end icon array        ///////////////////////////////////////////////////
 
 
 
