@@ -39,6 +39,8 @@
 
     <script src="js/jquery-2.2.4.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
     <script src="js/mapbox-utils.js"></script>
     <script src="js/keys.js"></script>
 
@@ -49,54 +51,93 @@
 
 
         var weatherObject = {};
-            // latitude = data.latitude;
-            // longitude = data.longitude;
-            //
-            // currentTemp = data.currently.temperature;
-            //
-            // highLow = data.daily.data[0].temperatureHigh + '/' + data.daily.data[0].temperatureLow;
-
 
         $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/"+ darkSkyKey +"/29.4241,-98.4936").done(function(data) {
-            console.log(data);
+            // console.log(data);
             weatherObject = data;
 
 
         function weatherCard(input) {
             var cardHTML = '';
 
-            for (var i = 0; i < 2; i++){
+            for (var i = 0; i < 3; i++){
 
                 cardHTML +=  '<div>';
-                cardHTML +=  '<div>' + weatherObject.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[0].temperatureLow + '</div>';
-                cardHTML +=  '<div>' + weatherObject.daily.data[i].icon + '</div>';
-                cardHTML +=  '<div>' + weatherObject.daily.data[i].summary + '</div>';
-                cardHTML +=  '<div>' + 'Humidity: ' + weatherObject.daily.data[i].humidity+ '</div>';
-                cardHTML +=  '<div>' + 'Wind Speed: ' + weatherObject.daily.data[i].windSpeed + '</div>';
+                cardHTML +=  '<div>' + input.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[i].temperatureLow + '</div>';
+                cardHTML +=  '<div>' +  '<img src=' + iconImg(input.daily.data[i].icon) + '>' + '</div>';
+                cardHTML +=  '<div>' + input.daily.data[i].summary + '</div>';
+                cardHTML +=  '<div>' + 'Humidity: ' + input.daily.data[i].humidity+ '</div>';
+                cardHTML +=  '<div>' + 'Wind Speed: ' + input.daily.data[i].windSpeed + '</div>';
                 cardHTML +=  '</div>';
             }
 
-            // return cardHTML;
-            $('.wrapper').html(weatherCard(weatherObject));
+            return cardHTML;
 
         }
+            $('.wrapper').html(weatherCard(weatherObject));
+
+
+
+
+
+//////////////// Loop to determine Image ///////////////////////
+            function iconImg(icon) {
+                var arrIcon = [];
+                iconArray.forEach(function (data) {
+                    if(icon === data.icon){
+                        arrIcon.push(data.url);
+                    }
+                });
+                return arrIcon;
+            }
         });
 
 
-        // <div class="card-wrapper">
+//////////////// Icon Array ///////////////////////
+        var iconArray = [
+            {
+                icon: 'clear-day',
+                url: 'img/climacon-SVG/Sun.svg'
+            },
+            {
+                icon: 'clear-night',
+                url: 'img/climacon-SVG/Moon-Full.svg'
+            },
+            {
+                icon: 'rain',
+                url: 'img/climacon-SVG/Cloud-Rain.svg'
+            },
+            {
+                icon: 'snow',
+                url: 'img/climacon-SVG/Cloud-Snow.svg'
+            },
+            {
+                icon: 'sleet',
+                url: 'img/climacon-SVG/Cloud-Hail.svg'
+            },
+            {
+                icon: 'wind',
+                url: 'img/climacon-SVG/Wind.svg'
+            },
+            {
+                icon: 'fog',
+                url: 'img/climacon-SVG/Cloud-Fog.svg'
+            },
+            {
+                icon: 'cloudy',
+                url: 'img/climacon-SVG/Cloud.svg'
+            },
+            {
+                icon:  'partly-cloudy-day',
+                url: 'img/climacon-SVG/Cloud-Sun.svg'
+            },
+            {
+                icon: 'partly-cloudy-night',
+                url: 'img/climacon-SVG/Cloud-Moon.svg'
+            }
+        ];
 
-        //      <div class="hi-low">High/Low</div>
-
-        //      <div class="icon">weather Icon</div>
-
-        //      <div class="cloud-rain">cloud/rain</div>
-
-        //      <div class="humid">humid</div>
-
-        //      <div class="wind">wind</div>
-
-        //     </div>
-
+/////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -111,22 +152,15 @@
             zoom: 8
         });
 
+        map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            marker: {
+                color: 'CornflowerBlue'
+            },
+            mapboxgl: mapboxgl
+        }));
 
-        // function reverseGeocode(coordinates, token) {
-        //     var baseUrl = 'https://api.mapbox.com';
-        //     var endPoint = '/geocoding/v5/mapbox.places/';
-        //     return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
-        //         .then(function(res) {
-        //             return res.json();
-        //         })
-        //         // to get all the data from the request, comment out the following three lines...
-        //         .then(function(data) {
-        //             return data.features[0].place_name;
-        //         });
-        // }
-        //
-        // // reverseGeocode({lat: latitude, lng: longitude}, mapboxToken);
-        // // });
+
 
     </script>
 
