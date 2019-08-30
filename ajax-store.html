@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Online Store</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -19,7 +22,12 @@
     <tbody id="insertProducts"></tbody>
 </table>
 
+
+<input id="refresh" type="button" value="Refresh">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 <script>
 (function() {
@@ -39,29 +47,41 @@
     //             its contents and fields
     //       HINT: You will want to target #insertProducts for your new HTML elements
 
+    $(document).ready(function() {
 
-    $.get("data/inventory.json", {
 
-    }).done(function(data) {
+        function updateTable() {
+            $.ajax('data/inventory.json').done(function (data) {
+                $('#insertProducts').html(buildTable(data));
+            });
+        }
+        updateTable();
 
-        var storeInv = '';
+        function buildTable(data) {
 
-        data.forEach(function (table) {
-            console.log(table);
+            var storeInv = '';
+
+            data.forEach(function (table) {
+                console.log(table);
 
                 storeInv += '<tr>';
-                storeInv += '<th>' + table.title +'</th>';
+                storeInv += '<th>' + table.title + '</th>';
                 storeInv += '<th>' + table.quantity + '</th>';
                 storeInv += '<th>' + table.price + '</th>';
                 storeInv += '<th>' + table.categories + '</th>';
                 storeInv += '</tr>'
+            });
 
-        });
+            // $('#insertProducts').html(storeInv);
+            return storeInv;
+        }
 
-        $('#insertProducts').html(storeInv);
+
+        $('#refresh').click(updateTable);
+
     });
-
 })();
+
 </script>
 
 </body>
