@@ -25,14 +25,6 @@
         </section>
 
         <section class="map-wrap">
-            <div>
-                <label for="latitude-input">Latitude</label>
-                <input name="latitude" id="latitude-input" type="text">
-
-                <label for="longitude-input">Longitude</label>
-                <input id="longitude-input" type="text">
-                <button type="button">Search</button>
-            </div>
 
         <div id='map' style='width: 80%; height: 80vh;'></div>
 
@@ -165,9 +157,22 @@
                 color: 'CornflowerBlue'
             },
             mapboxgl: mapboxgl
+
         }));
 
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([0, 0])
+            .addTo(map);
 
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+        }
+
+        marker.on('dragend', onDragEnd);
 
     </script>
 
