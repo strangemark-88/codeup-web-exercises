@@ -26,7 +26,7 @@
 <body>
     <div class="container">
         <h1>Weather Map</h1>
-        <h3 class="location">Mapbox Location Name</h3>
+        <h3 class="location">3 Day Forecast</h3>
 
         <section class="wrapper">
 
@@ -65,7 +65,7 @@
     <script>
         // $(document).ready(function() {
 
-//////////////////////////////////     Weather         ///////////////////////////////////////////////////////////////
+//////////////////////////////////     Initial Weather         ///////////////////////////////////////////////////////////////
 
 
         var weatherObject = {};
@@ -110,7 +110,7 @@
         });
 
 
-
+//////////////////////////////////   End  Initial Weather     ///////////////////////////////////////////////////////////////
 
 
 //////////////// Icon Array ///////////////////////
@@ -133,14 +133,14 @@
 
 //////////////////////////////////     Map         ///////////////////////////////////////////////////////////////
 
-        var locationName = ;
+
 
         mapboxgl.accessToken = mapboxToken;
 
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
-            center: [-98.273111, 29.801281],
+            center: [-98.489624, 29.426725],
             zoom: 8
         });
 
@@ -153,13 +153,9 @@
 
 
         map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            // marker: {
-            //     color: 'CornflowerBlue'
-            //     // draggable: true
-            // },
+            accessToken: mapboxgl.accessToken
 
-            // mapboxgl: mapboxgl
+            // mapboxgl: mapboxgl //// creates marker after geocode search
 
         }));
 
@@ -167,8 +163,10 @@
 
         var mapInput = '';
 
+//////////////////////////////////////////    Update marker and weather after geocode search        /////////
+
         map.on("moveend", function() {
-            console.log(map.getCenter());
+            // console.log(map.getCenter());
             marker.setLngLat(map.getCenter());
 
             lngLat = map.getCenter();
@@ -176,11 +174,13 @@
             weatherUpdate();
         });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         function onDragEnd() {
             lngLat = marker.getLngLat();
             mapInput = lngLat.lat + ',' + lngLat.lng;
-            coordinates.style.display = 'block';
-            coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            // coordinates.style.display = 'block';
+            // coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
             weatherUpdate();
 
             // console.log(lngLat);
@@ -225,6 +225,7 @@
 
 
 
+
 //////////////// Loop to determine Image ///////////////////////
                 function iconImg(icon) {
                     var arrIcon = [];
@@ -238,7 +239,14 @@
             });
         }
 
-        /////////////////////////////////     end  Update              ////////////////////////////////////////////
+/////////////////////////////////     end  Update              ////////////////////////////////////////////
+
+
+
+
+
+
+
 
     </script>
 
