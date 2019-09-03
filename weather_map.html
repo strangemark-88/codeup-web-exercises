@@ -25,7 +25,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Title</h1>
+        <h1>Weather Map</h1>
         <h3 class="location">Mapbox Location Name</h3>
 
         <section class="wrapper">
@@ -68,46 +68,46 @@
 //////////////////////////////////     Weather         ///////////////////////////////////////////////////////////////
 
 
-//         var weatherObject = {};
-//
-//         $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/"+ darkSkyKey +"/29.4241,-98.4936").done(function(data) {
-//             // console.log(data);
-//             weatherObject = data;
-//
-//
-//         function weatherCard(input) {
-//             var cardHTML = '';
-//
-//             for (var i = 0; i < 3; i++){
-//
-//                 cardHTML +=  '<div>';
-//                 cardHTML +=  '<div>' + input.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[i].temperatureLow + '</div>';
-//                 cardHTML +=  '<div>' +  '<img src=' + iconImg(input.daily.data[i].icon) + '>' + '</div>';
-//                 cardHTML +=  '<div>' + input.daily.data[i].summary + '</div>';
-//                 cardHTML +=  '<div>' + 'Humidity: ' + input.daily.data[i].humidity+ '</div>';
-//                 cardHTML +=  '<div>' + 'Wind Speed: ' + input.daily.data[i].windSpeed + '</div>';
-//                 cardHTML +=  '</div>';
-//             }
-//
-//             return cardHTML;
-//
-//         }
-//             $('.wrapper').html(weatherCard(weatherObject));
-//
-//
-//
-//
-// //////////////// Loop to determine Image ///////////////////////
-//             function iconImg(icon) {
-//                 var arrIcon = [];
-//                 iconArray.forEach(function (data) {
-//                     if(icon === data.icon){
-//                         arrIcon.push(data.url);
-//                     }
-//                 });
-//                 return arrIcon;
-//             }
-//         });
+        var weatherObject = {};
+
+        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/"+ darkSkyKey +"/29.4241,-98.4936").done(function(data) {
+            // console.log(data);
+            weatherObject = data;
+
+
+        function weatherCard(input) {
+            var cardHTML = '';
+
+            for (var i = 0; i < 3; i++){
+
+                cardHTML +=  '<div>';
+                cardHTML +=  '<div>' + input.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[i].temperatureLow + '</div>';
+                cardHTML +=  '<div>' +  '<img src=' + iconImg(input.daily.data[i].icon) + '>' + '</div>';
+                cardHTML +=  '<div>' + input.daily.data[i].summary + '</div>';
+                cardHTML +=  '<div>' + 'Humidity: ' + input.daily.data[i].humidity+ '</div>';
+                cardHTML +=  '<div>' + 'Wind Speed: ' + input.daily.data[i].windSpeed + '</div>';
+                cardHTML +=  '</div>';
+            }
+
+            return cardHTML;
+
+        }
+            $('.wrapper').html(weatherCard(weatherObject));
+
+
+
+
+//////////////// Loop to determine Image ///////////////////////
+            function iconImg(icon) {
+                var arrIcon = [];
+                iconArray.forEach(function (data) {
+                    if(icon === data.icon){
+                        arrIcon.push(data.url);
+                    }
+                });
+                return arrIcon;
+            }
+        });
 
 
 
@@ -133,6 +133,8 @@
 
 //////////////////////////////////     Map         ///////////////////////////////////////////////////////////////
 
+        var locationName = ;
+
         mapboxgl.accessToken = mapboxToken;
 
         var map = new mapboxgl.Map({
@@ -142,17 +144,6 @@
             zoom: 8
         });
 
-        map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            // marker: {
-            //     color: 'CornflowerBlue'
-            //     // draggable: true
-            // },
-
-            mapboxgl: mapboxgl
-
-        }));
-
         var marker = new mapboxgl.Marker({
             color: 'CornflowerBlue',
             draggable: true
@@ -160,16 +151,40 @@
             .setLngLat([-98.48959304292949, 29.42673353372909])
             .addTo(map);
 
+
+        map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            // marker: {
+            //     color: 'CornflowerBlue'
+            //     // draggable: true
+            // },
+
+            // mapboxgl: mapboxgl
+
+        }));
+
         var lngLat = [];
 
         var mapInput = '';
+
+        map.on("moveend", function() {
+            console.log(map.getCenter());
+            marker.setLngLat(map.getCenter());
+
+            lngLat = map.getCenter();
+            mapInput = lngLat.lat + ',' + lngLat.lng;
+            weatherUpdate();
+        });
 
         function onDragEnd() {
             lngLat = marker.getLngLat();
             mapInput = lngLat.lat + ',' + lngLat.lng;
             coordinates.style.display = 'block';
             coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-            // weatherUpdate();
+            weatherUpdate();
+
+            // console.log(lngLat);
+            // console.log(mapInput);
         }
 
         marker.on('dragend', onDragEnd);
