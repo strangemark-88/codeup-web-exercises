@@ -21,13 +21,17 @@
             border-radius: 3px;
             display: none;
         }
+        .main {
+            width: 80%;
+            height: 100vh;
+        }
     </style>
 
 </head>
 <body>
-<div class="container">
-    <h1>Weather Map</h1>
-    <h3 class="location text-center">3 Day Forecast</h3>
+<div class="container main">
+<!--    <h1>Weather Map</h1>-->
+    <h1 class="location text-center mb-0">3 Day Forecast</h1>
     <h3 id="location">San Antonio, Texas</h3>
 
     <section class="wrapper d-flex justify-content-around">
@@ -42,9 +46,9 @@
 
     </section>
 
-    <section class="container map-wrap d-flex justify-content-around mt-4">
+    <section class="container map-wrap d-flex justify-content-around mt-3">
 
-        <div id='map' style='width: 80%; height: 80vh;'></div>
+        <div id='map' style='width: 100%; height: 350px;'></div>
         <pre id='coordinates' class='coordinates'></pre>
 
     </section>
