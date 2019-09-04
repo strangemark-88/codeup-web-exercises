@@ -6,6 +6,7 @@
 
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="css/bootstrap-superhero.css">
     <style>
         .coordinates {
             background: rgba(0,0,0,0.5);
@@ -26,9 +27,9 @@
 <body>
     <div class="container">
         <h1>Weather Map</h1>
-        <h3 class="location">3 Day Forecast</h3>
+        <h3 class="location text-center">3 Day Forecast</h3>
 
-        <section class="wrapper">
+        <section class="wrapper d-flex justify-content-around">
 
 <!--        <div class="card-wrapper">-->
 <!--            <div class="hi-low">High/Low</div>-->
@@ -40,7 +41,7 @@
 
         </section>
 
-        <section class="map-wrap">
+        <section class="container map-wrap d-flex justify-content-around mt-4">
 
         <div id='map' style='width: 80%; height: 80vh;'></div>
             <pre id='coordinates' class='coordinates'></pre>
@@ -80,12 +81,14 @@
 
             for (var i = 0; i < 3; i++){
 
-                cardHTML +=  '<div>';
-                cardHTML +=  '<div>' + input.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[i].temperatureLow + '</div>';
-                cardHTML +=  '<div>' +  '<img src=' + iconImg(input.daily.data[i].icon) + '>' + '</div>';
+                cardHTML +=  '<div class="card">';
+                cardHTML +=  '<div class="card-body">';
+                cardHTML +=  '<div class="card-title">' + input.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[i].temperatureLow + '</div>';
+                cardHTML +=  '<div class="card-img-top">' +  '<img src=' + iconImg(input.daily.data[i].icon) + '>' + '</div>';
                 cardHTML +=  '<div>' + input.daily.data[i].summary + '</div>';
                 cardHTML +=  '<div>' + 'Humidity: ' + input.daily.data[i].humidity+ '</div>';
                 cardHTML +=  '<div>' + 'Wind Speed: ' + input.daily.data[i].windSpeed + '</div>';
+                cardHTML +=  '</div>';
                 cardHTML +=  '</div>';
             }
 
@@ -142,7 +145,7 @@
             style: 'mapbox://styles/mapbox/streets-v9',
             center: [-98.489624, 29.426725],
             zoom: 8
-        });
+        }).setStyle('mapbox://styles/mapbox/dark-v10');
 
         var marker = new mapboxgl.Marker({
             color: 'CornflowerBlue',
@@ -152,12 +155,23 @@
             .addTo(map);
 
 
-        map.addControl(new MapboxGeocoder({
+        // var geocoder = map.addControl(new MapboxGeocoder({
+        //     accessToken: mapboxgl.accessToken,
+        //
+        //     mapboxgl: mapboxgl //// creates marker after geocode search
+        //
+        // }));
+        //
+
+        var geocoder = new MapboxGeocoder({
             accessToken: mapboxgl.accessToken
 
             // mapboxgl: mapboxgl //// creates marker after geocode search
 
-        }));
+        });
+
+        map.addControl(geocoder);
+        // console.log(geocoder);
 
         var lngLat = [];
 
@@ -165,14 +179,31 @@
 
 //////////////////////////////////////////    Update marker and weather after geocode search        /////////
 
-        map.on("moveend", function() {
-            // console.log(map.getCenter());
-            marker.setLngLat(map.getCenter());
+        // map.on("moveend", function() {
+        //     // console.log(map.getCenter());
+        //     marker.setLngLat(map.getCenter());
+        //
+        //     lngLat = map.getCenter();
+        //     mapInput = lngLat.lat + ',' + lngLat.lng;
+        //     weatherUpdate();
+        // });
 
-            lngLat = map.getCenter();
-            mapInput = lngLat.lat + ',' + lngLat.lng;
-            weatherUpdate();
+        // map.on('results', function (results) {
+        //
+        // });
+
+        // geocoder.on('results', function(results) {
+        //     console.log(results);
+        // });
+
+        geocoder.on('results', function(results) {
+            console.log(results);
+            console.log(results.features[0].center);
+            console.log(results.features[0].text);
+            console.log(results.features[0].context[0].text);
         });
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,12 +239,14 @@
 
                     for (var i = 0; i < 3; i++){
 
-                        cardHTML +=  '<div>';
-                        cardHTML +=  '<div>' + input.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[i].temperatureLow + '</div>';
-                        cardHTML +=  '<div>' +  '<img src=' + iconImg(input.daily.data[i].icon) + '>' + '</div>';
+                        cardHTML +=  '<div class="card">';
+                        cardHTML +=  '<div class="card-body">';
+                        cardHTML +=  '<div class="card-title">' + input.daily.data[i].temperatureHigh + '/' + weatherObject.daily.data[i].temperatureLow + '</div>';
+                        cardHTML +=  '<div class="card-img-top">' +  '<img src=' + iconImg(input.daily.data[i].icon) + '>' + '</div>';
                         cardHTML +=  '<div>' + input.daily.data[i].summary + '</div>';
                         cardHTML +=  '<div>' + 'Humidity: ' + input.daily.data[i].humidity+ '</div>';
                         cardHTML +=  '<div>' + 'Wind Speed: ' + input.daily.data[i].windSpeed + '</div>';
+                        cardHTML +=  '</div>';
                         cardHTML +=  '</div>';
                     }
 
