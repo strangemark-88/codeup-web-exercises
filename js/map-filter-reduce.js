@@ -56,11 +56,8 @@ let userEmails = users.map(function (user) {
 
 let userExp = users.reduce(function (total, user) {
     return total + user.yearsOfExperience;
-}, 0);
+}, 0)/users.length;
 
-// console.log(userExp);
-//
-// console.log(userExp/users.length);
 
 // Use .reduce to get the longest email from the list of users.
 
@@ -84,17 +81,23 @@ let longestEmail = users.reduce(function (total, user) {
 // Use .reduce to get the list of user's names in a single string.
 // Example: Your instructors are: ryan, luis, zach, fernando, justin.
 
-let userNames = users.reduce(function (final, names) {
-    return final + `${names.name}, `
-}, '');
+// let userNames = users.reduce(function (final, names) {
+//     return final + `${names.name}, `
+// }, '');
+
+let usersName = users.reduce( function(finalString, user, index) {
+    if(index === users.length -1){
+        return finalString + `${user.name}.`
+    }
+    else{
+        return finalString + `${user.name}, `
+    }
+}, 'Your instructors are:  ');
+
 
 // console.log(userNames);
 /////////////////////////////////////////////////////////////
 
 // Bonus?
 //Use .reduce to get the unique list of languages from the list of users
-
-// let userUnique = users.reduce((acc, cur) => [
-//     ...acc.filter((obj) => obj.languages !== cur.languages), cur
-// ], []);
 
