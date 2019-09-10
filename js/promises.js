@@ -83,7 +83,7 @@ function gitUserEvents(username){
 
             data.filter(function (input) {
 
-                if(input.type === 'PushEvent'){
+                if(input.type === 'PushEvent' && input.actor.login === username){
 
                     repoName.push(input.repo.name);
 
