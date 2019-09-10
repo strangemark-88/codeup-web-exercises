@@ -37,7 +37,7 @@
 // and returns a promise that resolves with the date of the last commit that user made
 
 
-// getting last push
+// getting last push///////////////
 
 // function gitUserEvents(username){
 //     fetch('https://api.github.com/users/'+ username +'/events', {
@@ -65,20 +65,19 @@
 // }
 
 
+
 /////////// getting last commit by user
 
 function gitUserEvents(username){
-    fetch('https://api.github.com/users/'+ username +'/events', {
+    fetch(`https://api.github.com/users/${username}/events`, {
         method: 'GET',
         headers: {'Authorization': `token ${githubApiKey}`}
 
     }).then(response => {
 
     return response.json()
-
     })
         .then((data) => {
-
             let repoName = [];
 
             data.filter(function (input) {
@@ -86,7 +85,6 @@ function gitUserEvents(username){
                 if(input.type === 'PushEvent' && input.actor.login === username){
 
                     repoName.push(input.repo.name);
-
                 }
             });
 
